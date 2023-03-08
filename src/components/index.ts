@@ -1,4 +1,9 @@
-export * from "./container";
-export * from "./movie";
-export * from "./pagination";
-export * from "./searchBar";
+export { CardContainer } from "./cardContainer";
+export { EmptyState } from "./emptyState";
+export { MainContainer } from "./mainContainer";
+export { Movie } from "./movie";
+export { MoviesContainer } from "./moviesContainer";
+export { Pagination } from "./pagination";
+export { PaginationButton } from "./paginationButton";
+export { PaginationContainer } from "./paginationContainer";
+export { SearchBar } from "./searchBar";

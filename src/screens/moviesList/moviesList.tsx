@@ -1,34 +1,20 @@
 import React from "react";
-import styled from "styled-components";
-import { Container, Movie, Pagination, SearchBar } from "../../components";
+import {
+  MainContainer,
+  Movie,
+  MoviesContainer,
+  Pagination,
+  SearchBar,
+  EmptyState,
+} from "../../components";
 import { useMoviesList } from "./moviesList.hook";
-
-const MoviesContainer = styled.div`
-  margin: 0 auto;
-  display: grid;
-  gap: 1rem;
-  margin-top: 110px;
-`;
-
-const EmptyStateContainer = styled.div`
-  display: flex;
-  height: calc(100vh - 109px);
-  align-self: center;
-  align-items: center;
-  flex-direction: row;
-`;
-
-const Message = styled.p`
-  font-size: 33px;
-  margin-bottom: 10px;
-`;
 
 export const MoviesList: React.FC = () => {
   const { data, getDataSearch, query, setQuery, currentPage, setCurrentPage } =
     useMoviesList();
 
   return (
-    <Container>
+    <MainContainer>
       <SearchBar
         onClick={() => getDataSearch()}
         value={query}
@@ -48,17 +34,15 @@ export const MoviesList: React.FC = () => {
           ))}
         </MoviesContainer>
       ) : (
-        <EmptyStateContainer>
-          <Message>Sorry, we don't have any more movies to show.</Message>
-        </EmptyStateContainer>
+        <EmptyState text="Sorry, we don't have any more movies to show." />
       )}
 
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        disableBtn={data.length < 1}
+        //disableBtn={data.length < 1}
         moviesCurrentPage={data.length}
       />
-    </Container>
+    </MainContainer>
   );
 };

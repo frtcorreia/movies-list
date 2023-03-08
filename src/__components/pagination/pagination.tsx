@@ -1,32 +1,33 @@
 import React from "react";
-import { PaginationButton, PaginationContainer } from "components";
+import { PaginationButton } from "../paginationButton";
+import { PaginationContainer } from "../paginationContainer";
 import { PaginationsProps } from "./types";
 
 export const Pagination: React.FC<PaginationsProps> = ({
   currentPage,
   setCurrentPage,
-  disableBtn = false,
+  disableBtn,
   moviesCurrentPage,
 }) => {
-  console.log({ currentPage, setCurrentPage, disableBtn, moviesCurrentPage });
   return (
     <PaginationContainer>
-      <button
+      <PaginationButton
         key="prev"
         onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1)}
         disabled={currentPage === 1}
       >
         Prev
-      </button>
+      </PaginationButton>
       <PaginationButton key={currentPage} active disabled>
         {currentPage}
       </PaginationButton>
-      <button
+      <PaginationButton
+        key="next"
         onClick={() => setCurrentPage(currentPage + 1)}
-        disabled={moviesCurrentPage < 12}
+        disabled={disableBtn || moviesCurrentPage < 12}
       >
         Next
-      </button>
+      </PaginationButton>
     </PaginationContainer>
   );
 };

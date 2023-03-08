@@ -1,23 +1,6 @@
 import React from "react";
-import { api } from "../../utils/api";
-
-interface DataProps {
-  coverImage?: string;
-  description?: string;
-  director?: string;
-  id?: string;
-  title?: string;
-  year?: number;
-}
-
-interface MoviesList {
-  getDataSearch: () => Promise<void>;
-  query: string;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
-  data: DataProps[];
-  currentPage: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-}
+import { api } from "utils/api";
+import { DataProps, MoviesList } from "./types";
 
 export const useMoviesList = (): MoviesList => {
   const [data, setData] = React.useState<DataProps[]>([]);
@@ -38,10 +21,15 @@ export const useMoviesList = (): MoviesList => {
   };
 
   React.useEffect(() => {
-    getDataPaginated();
     getDataSearch();
+    getDataPaginated();
+    debugger;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
+
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return {
     data,
